@@ -64,7 +64,7 @@ $pass = $_POST['pass']
   <?php } ?>
 <?php
   if($name == $user ){
-    header('Location: admin.php');
+    header('Location:   admin.php');
   }else{
     echo "worng !";
   }
