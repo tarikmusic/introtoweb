@@ -56,16 +56,17 @@ include 'connect.php';
       <input class="Tin" id="submit" class="btn btn-success" type="submit" value="submit" name="submit"/>
     </form>
 
+
 <script>
 $("#fighterForm").validate({
      rules: {
-       lastname: {
+       lname: {
          minlength: 2,
          maxlength: 5
        }
      },
      messages: {
-       lastname: {
+       lname: {
          required: "Hamdija de,der majke ti unesi prezime",
          minlength: "Unesi der koje slovo",
          maxlength: "Precero si hamdija"
@@ -73,16 +74,8 @@ $("#fighterForm").validate({
      },
      submitHandler: function(form) {
        if (confirm('Jesi fakat fakat fakat siguran da hoces da submitas????')){
-         jQuery(document).ready(function(){
 
 
-             $("#fighterForm").submit(function(e){
-
-               e.preventDefault(); // prevents refreshing the page !
-
-               var inputs = $(this).serialize();
-             });
-         });
        }else{
          alert('Dobro ne moras odmah psovati');
        }
@@ -91,7 +84,12 @@ $("#fighterForm").validate({
 
 
 
+
+
+
 </script>
+
+
 
   </div>
 
@@ -124,12 +122,12 @@ $("#fighterForm").validate({
     ?>
 
     <?php
-            echo ' <table >  <tr><th>Fight Number</th><th>First Fighter</th><th>Second Fighter</th></tr>';
+            echo ' <table class="table table-striped centeralized" >  <tr><th>Fight Number</th><th style= "color: red">Red corner</th><th style="color: blue">Blue corner</th></tr>';
 
         foreach($names as $name){
 
 
-            echo '<tr><td>' . $name['fight_number'] . '</td><td>' . $name['first'] . '</td> <td> <b> vs </b> <td>  <td>' . $name['second'] . '</td></tr>';
+            echo '<tr><td>' . $name['fight_number'] . '</td><td>' . $name['first'] . '</td><td>' . $name['second'] . '</td></tr>';
 
 
         }
@@ -147,26 +145,24 @@ $("#fighterForm").validate({
 
   <div class="page" id="admin">
 
+      <h1 class="fomrh1"><b>Log in</b></h1>
 
-    <div class="content">
-
-
-
-    <form id="loginForm" method="post" action="login_admin_check.php"  >
-      <input id="username" name="username" placeholder="Username" />
-      <input id="pass" name="pass" placeholder="password" />
-        <input id="submit" class="btn btn-success" type="submit" value="Send" name="Submit"/>
+    <form class="Tform" id="loginForm" method="post" action="login_admin_check.php"  >
+      <input class="Tin" id="username" name="username" placeholder="Username" />
+      <input class="Tin" id="pass" name="pass" placeholder="password" />
+      <input class="Tin" id="submit" class="btn btn-success " type="submit" value="Send" name="Submit"  />
     </form>
 
-
-
-    </div>
+<li><a href="#" data-target="nesto" class="nav-link">sing up</a></li>
 
   </div>
 
+<div class="page" id="nesto">
 
+  <p>ha ha hahaha hahah hah ha </p>
+</div>
 
   </main>
-  <script src="my.js"></script>
+  <script src="project.js"></script>
 </body>
 </html>

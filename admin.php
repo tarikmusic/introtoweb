@@ -16,7 +16,7 @@
   <body>
 
 
-    <div class="content1">
+    <div class="content1 customize">
 
     <?php
       try{
@@ -39,10 +39,10 @@
       }
 ?>
 <?php
-          echo '<table border=1px> <tr><th>Club name</th><th>First name</th><th>Last name</th><th>Age</th><th>weight</th><th>height</th></tr>';
+          echo '<table border="1px"  class="table table-striped "> <tr><th>Club name</th><th>First name</th><th>Last name</th><th>Age</th><th>weight</th><th>height</th><th>wins</th><th>losess</th><th>accomplishments</th></tr>';
 
           foreach ($fighters as $member) {
-            echo '<tr><td>' .$member['club_name'] . '</td><td>' .$member['first_name'] . '</td><td>' .$member['last_name'] . '</td><td>' .$member['Age'] . '</td><td>' .$member['weight'] . '</td><td>' .$member['height'] . '</td><td>';
+            echo '<tr><td>' .$member['club_name'] . '</td><td>' .$member['first_name'] . '</td><td>' .$member['last_name'] . '</td><td>' .$member['Age'] . '</td><td>' .$member['weight'] . '</td><td>' .$member['height'] . '</td><td>' .$member['wins'] . '</td><td>' . $member['losess'] .'</td><td>'.$member['bigest_accomplishment'] .'</td><tr>';
           }
 
           echo '</table> <br>';
@@ -50,18 +50,21 @@
 ?>
 
 
-<form id="adminForm" method="post"   >
-  <input id="fn" name="fn" placeholder="fn"/> <br></br>
-  <input id="opp1" name="opp1" placeholder="First opponent" /> <div>  vs </div>
-  <input id="opp2" name="opp2" placeholder="Second opponent" /> <br></br>
-  <input id="submit" class="btn btn-success" type="submit" value="submit" name="submit"/>
+<form  class="Tform" id="adminForm" method="post"   >
+  <input style="border: 3px solid red" class="Tin" id="fn" name="fn" placeholder="fn"/> <br></br>
+  <input style="border: 3px solid red" class="Tin" id="opp1" name="opp1" placeholder="First opponent" /> <div>  vs </div>
+  <input style="border: 3px solid red" class="Tin" id="opp2" name="opp2" placeholder="Second opponent" /> <br></br>
+  <input style="border: 3px solid red"  class="Tin" id="submit" class="btn btn-success" type="submit" value="submit" name="submit"/> <br>
+  <button  class="Tin" class="btn btn-success"><a href="events.php" >Add event</a></button>
 </form>
 
 
 
 
 
+
+
 </div>
-<script src="my.js"></script>
+<script src="project.js"></script>
 </body>
 </html>

@@ -43,27 +43,21 @@ $pass = $_POST['pass']
         exit;
 
       }
+ ?>
 
-      if( $names == true) { ?>
 
-        <ul class="group">
           <?php
               foreach ($names as $user) {
 
-                $user = $user['username']; ?>
+                $user = $user['username'];
               }
+                foreach ($names as $user2) {
 
-
-
-
-      <?php  }  ?>
-
-    </ul>
-
-
-  <?php } ?>
+                  $user2 = $user2['password'];
+                }
+         ?>
 <?php
-  if($name == $user ){
+  if($name == $user  && $pass == $user2){
     header('Location:   admin.php');
   }else{
     echo "worng !";

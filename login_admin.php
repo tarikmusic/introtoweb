@@ -15,16 +15,16 @@
 
 
 
-<form id="loginForm" method="post" action="login_admin_check.php"  >
+<form id="loginForm" method="post"   >
   <input id="username" name="username" placeholder="Username" />
-  <input id="pass" name="pass" placeholder="password" />
-    <input id="submit" class="btn btn-success" type="submit" value="Send" name="Submit"/>
+  <input id="password" name="password" placeholder="password" />
+  <input id="submit" class="btn btn-success" type="submit" value="Send" name="Submit"/>
 </form>
 
 
 
 </div>
-  <script src="apps.js"></script>
+  <script src="my.js"></script>
 </body>
 
 </html>

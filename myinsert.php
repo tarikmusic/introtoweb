@@ -28,6 +28,7 @@ try{
       $inserts->bindParam(':accomplishment',$accomp);
       $inserts->execute();
 
+
 }catch(Exeption $e){
   echo $e->getMessage();
   exit;
