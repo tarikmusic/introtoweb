@@ -16,7 +16,7 @@
   <body>
 
 
-    <div class="content1 customize">
+    <div class="content1 ">
 
     <?php
       try{
@@ -50,20 +50,44 @@
 ?>
 
 
+
 <form  class="Tform" id="adminForm" method="post"   >
   <input style="border: 3px solid red" class="Tin" id="fn" name="fn" placeholder="fn"/> <br></br>
-  <input style="border: 3px solid red" class="Tin" id="opp1" name="opp1" placeholder="First opponent" /> <div>  vs </div>
+  <input style="border: 3px solid red" class="Tin" id="opp" name="opp" placeholder="First opponent" /> <div>  vs </div>
   <input style="border: 3px solid red" class="Tin" id="opp2" name="opp2" placeholder="Second opponent" /> <br></br>
   <input style="border: 3px solid red"  class="Tin" id="submit" class="btn btn-success" type="submit" value="submit" name="submit"/> <br>
   <button  class="Tin" class="btn btn-success"><a href="events.php" >Add event</a></button>
 </form>
 
 
+<script>
+$("#adminForm").validate({
+     rules: {
+       opp: {
+         minlength: 2,
+         maxlength: 5
+       }
+     },
+     messages: {
+       opp: {
+         required: "Hamdija de,der majke ti unesi prezime",
+         minlength: "Unesi der koje slovo",
+         maxlength: "Precero si hamdija"
+       }
+     },
+     submitHandler: function(form) {
+       if (confirm('Jesi fakat fakat fakat siguran da hoces da submitas????')){
+
+
+       }else{
+         alert('Dobro ne moras odmah psovati');
+       }
+     }
+   });
 
 
 
-
-
+</script>
 </div>
 <script src="project.js"></script>
 </body>

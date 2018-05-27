@@ -26,6 +26,20 @@ jQuery(document).ready(function(){
      $.post("myinsert.php",inputs,function(){
           $('.content1').load('admin.php');
       });
+
+    });
+});
+
+jQuery(document).ready(function(){
+    $("#eventForm").submit(function(e){
+
+      e.preventDefault(); // prevents refreshing the page !
+
+      var inputs = $(this).serialize();
+     $.post("eventInsert.php",inputs,function(){
+          $('.event').load('home.php');
+      });
+
     });
 });
 
@@ -44,22 +58,31 @@ const app = {
       link.addEventListener('click',app.nav);
     })
     history.replaceState({},'Home' , '#home');
-    window.addEventListener('haschange' , app.poppin)
+    window.addEventListener('popstate' , app.poppin)
   },
   nav: function(ev){
     ev.preventDefault();
     let currentPage = ev.target.getAttribute('data-target');
     document.querySelector('.active').classList.remove('active');
     document.getElementById(currentPage).classList.add('active');
-    history.pushState({},currentPage, '#${currentPage}');
+  //  console.log(currentPage);
+    history.pushState({},currentPage, `#${currentPage}`);
     document.getElementById(currentPage).dispatchEvent(app.show);
   },
   pageShown: function(ev){
-    ev.target
+  //  ev.target
+  //console.log('Page ' , ev.target.id , 'just show');
 
   },
   poppin: function(ev){
-      console.log(location.hash,'popstate event');
+    //  console.log(location.hash,'popstate event');
+      let hash = location.hash.replace('#' , '');
+      document.querySelector('.active').classList.remove('active');
+      document.getElementById(hash).classList.add('active');
+    //  console.log(currentPage);
+    //  history.pushState({},currentPage, `#${currentPage}`);
+      document.getElementById(hash).dispatchEvent(app.show);
+
   }
 }
 

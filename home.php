@@ -15,16 +15,113 @@ include 'connect.php';
           <title>KICKBOXING</title>
     </head>
 <body class="tm-body">
+
+  <?php
+    try{
+
+      global $db;
+      $result = $db->prepare("SELECT * FROM events ORDER BY id ASC");
+      $result->execute();
+      $fighters = $result->fetchAll(PDO::FETCH_ASSOC);
+      /*   A cursor is used to pecess individual rows return
+      by database system for a query.
+      cursor holds the rows returned by squl statement.
+      cursor is defined as work area where sql statement is executed
+      */
+      $result->closeCursor();
+
+    }catch(Exeption $e){
+      echo $e->getMessage() . " error has occured";
+      exit;
+
+    }
+?>
+<?php
+
+        foreach ($fighters as $d) {
+          $d = $d['eventDate'];
+         break;
+        }
+        foreach($fighters as $e){
+          $e = $e['event_name'];
+           break;
+        }
+
+
+?>
+
   <main>
   <header class="tm-header">
     <div class=tm-container>
       <img src="logo_gloves.png" alt="logo" width="120" class="tm-logo">
+        <table class="countDownContainer ">
+          <tr>
+            <td colspan="4" class="info" style="color: red"><b><i>"<?php echo $e ?>"</i></b></td>
+          </tr>
+          <tr class="info">
+            <td class="bold" id="days">00</td>
+            <td class="lijevo bold" id="hours">00</td>
+            <td class="lijevo bold"  id="minuts">00</td>
+            <td class="lijevo bold"  id="seconds">00</td>
+          </tr>
+          <tr>
+            <td>Days</td>
+            <td class="lijevo" >Hours</td>
+            <td class="lijevo" >Minutes</td>
+            <td class="lijevo" >Seconds</td>
+          </tr>
+        </table>
+
+
+        <script type="text/javascript">
+          var date = "<?php echo $d ?>";
+
+
+          function countdown(){
+
+            var now = new Date();
+            var eventDate = new Date(date);
+
+            var currentTime = now.getTime();
+            var eventTime = eventDate.getTime();
+
+            var remTime = eventTime - currentTime;
+
+            var s = Math.floor(remTime / 1000);
+            var m = Math.floor(s / 60);
+            var h = Math.floor(m / 60);
+            var d = Math.floor(h / 24);
+
+            h %= 24;
+            m %= 60;
+            s %= 60;
+
+            h = (h < 10) ? "0" + h : h;
+            m = (m < 10) ? "0" + m : m;
+            s = (s < 10) ? "0" + s : s;
+
+          //  console.log(d + " hours: " + h + " minutes: " + m);
+
+            document.getElementById("days").textContent = d;
+            document.getElementById("hours").textContent = h;
+            document.getElementById("minuts").textContent = m;
+            document.getElementById("seconds").textContent = s;
+
+            setTimeout(countdown, 1000);
+
+
+          }
+
+          countdown();
+        </script>
+
+    <!--  ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,  -->
       <nav class="tm-nav">
         <ul>
-            <li><a href="#" data-target="fighters" class="nav-link">Fights</a></li>
-            <li><a href="#" data-target="trener" class="nav-link">trener</a></li>
-            <li><a href="#" data-target="admin" class="nav-link">admin </a></li>
-            <li><a href="#" data-target="home" class="nav-link">home</a></li>
+            <li><a href="#" data-target="fighters" class="nav-link fight">Fights</a></li>
+            <li><a href="#" data-target="trener" class="nav-link fight">Trener</a></li>
+            <li><a href="#" data-target="admin" class="nav-link fight">Admin </a></li>
+            <li><a href="#" data-target="home" class="nav-link fight">Home</a></li>
         </ul>
       </nav>
   </div>
@@ -35,11 +132,57 @@ include 'connect.php';
 
 
   <div class="page active" id="home">
-    <h1>HOME</h1>
-    <p> how beautiful day is today ! </p>
+    <p></p>
+    <p></p>
+    <p></p>
 
+    <div class="event">
+
+
+              <?php
+                try{
+
+                  global $db;
+                  $result = $db->prepare("SELECT * FROM events ORDER BY id ASC");
+                  $result->execute();
+                  $names = $result->fetchAll(PDO::FETCH_ASSOC);
+                  /*   A cursor is used to pecess individual rows return
+                  by database system for a query.
+                  cursor holds the rows returned by squl statement.
+                  cursor is defined as work area where sql statement is executed
+                  */
+                  $result->closeCursor();
+
+                }catch(Exeption $e){
+                  echo $e->getMessage();
+                  exit;
+
+                }
+
+          ?>
+
+          <?php
+                  echo ' <table class="table table-striped " >  <tr><th>Date</th><th>Event name</th><th>Country</th><th>City</th><th>Description</th></tr>';
+
+              foreach($names as $name){
+
+
+                  echo '<tr><td>' . $name['eventDate'] . '</td><td>' . $name['event_name'] . '</td><td>' . $name['country'] . '</td><td>' . $name['city'] .'</td><td>'. $name['description'] . '</td></tr>';
+
+
+              }
+
+              echo '</table>';
+
+           ?>
+
+
+  </div> <!-- ovaj mi je gdje ce se ovo ubacivat !  -->
   </div>
   <div class="page " id="trener">
+    <p></p>
+    <p></p>
+    <p></p>
 
     <h1 class="fomrh1"><b>Enter participants</b></h1>
 
@@ -84,9 +227,6 @@ $("#fighterForm").validate({
 
 
 
-
-
-
 </script>
 
 
@@ -96,7 +236,9 @@ $("#fighterForm").validate({
   <div class="page" id="fighters">
 
 
-    <p class="proba">bekir debil </p>
+    <p></p>
+    <p></p>
+    <p></p>
     <div class="content">
 
         <?php
@@ -122,7 +264,7 @@ $("#fighterForm").validate({
     ?>
 
     <?php
-            echo ' <table class="table table-striped centeralized" >  <tr><th>Fight Number</th><th style= "color: red">Red corner</th><th style="color: blue">Blue corner</th></tr>';
+            echo ' <table class="table table-striped " >  <tr><th>Fight Number</th><th style= "color: red">Red corner</th><th style="color: blue">Blue corner</th></tr>';
 
         foreach($names as $name){
 
@@ -144,7 +286,9 @@ $("#fighterForm").validate({
   </div>
 
   <div class="page" id="admin">
-
+    <p></p>
+    <p></p>
+    <p></p>
       <h1 class="fomrh1"><b>Log in</b></h1>
 
     <form class="Tform" id="loginForm" method="post" action="login_admin_check.php"  >
@@ -153,14 +297,9 @@ $("#fighterForm").validate({
       <input class="Tin" id="submit" class="btn btn-success " type="submit" value="Send" name="Submit"  />
     </form>
 
-<li><a href="#" data-target="nesto" class="nav-link">sing up</a></li>
+<!--<button class="singup" ><a href="#" data-target="nesto" class="nav-link">sing up</a></button> -->
 
   </div>
-
-<div class="page" id="nesto">
-
-  <p>ha ha hahaha hahah hah ha </p>
-</div>
 
   </main>
   <script src="project.js"></script>

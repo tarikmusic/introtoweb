@@ -17,26 +17,57 @@ include 'connect.php';
 <body>
 
 
+      <h1 class="fomrh1"><b>Enter participants</b></h1>
+
+      <form class="Tform"  id="fighterForm" method="post" >
+        <input class="Tin" id="cname" name="cname" placeholder="Club Name" /> <br>
+        <input class="Tin" id="fname"   name="fname" placeholder="First Name"  /> <br>
+        <input class="Tin" id="lname" name="lname" placeholder="Last Name" /> <br>
+        <input class="Tin" id="age" name="age" placeholder="Age" required/> <br>
+        <input class="Tin" id="weight" name="weight" placeholder="Weight" /> <br>
+        <input class="Tin" id="height" name="height" placeholder="Height" /> <br>
+        <input class="Tin" id="wins" name="wins" placeholder="wins" /> <br>
+        <input class="Tin" id="losess" name="losess" placeholder="losess" /> <br>
+        <input class="Tin" id="accomplishment" name="accomplishment" placeholder="accomplishment" /> <br>
+        <input class="Tin" id="submit" class="btn btn-success" type="submit" value="submit" name="submit"/>
+      </form>
+
+
+  <script>
+  $("#fighterForm").validate({
+       rules: {
+         lname: {
+           minlength: 2,
+           maxlength: 5
+         }
+       },
+       messages: {
+         lname: {
+           required: "Hamdija de,der majke ti unesi prezime",
+           minlength: "Unesi der koje slovo",
+           maxlength: "Precero si hamdija"
+         }
+       },
+       submitHandler: function(form) {
+         if (confirm('Jesi fakat fakat fakat siguran da hoces da submitas????')){
+
+
+         }else{
+           alert('Dobro ne moras odmah psovati');
+         }
+       }
+     });
 
 
 
-<form  id="fighterForm" method="post" >
-  <input id="cname" name="cname" placeholder="Club Name" required /> <br>
-  <input id="fname"   name="fname" placeholder="First Name" required /> <br>
-  <input id="lname" name="lname" placeholder="Last Name" required/> <br>
-  <input id="age" name="age" placeholder="Age" required/> <br>
-  <input id="weight" name="weight" placeholder="Weight" required /> <br>
-  <input id="height" name="height" placeholder="Height" required/> <br>
-  <input id="wins" name="wins" placeholder="wins" required/> <br>
-  <input id="losess" name="losess" placeholder="losess" required/> <br>
-  <input id="accomplishment" name="accomplishment" placeholder="accomplishment" required /> <br>
-  <input id="submit" class="btn btn-success" type="submit" value="submit" name="submit"/>
-</form>
 
 
 
+  </script>
 
-  <script src="myapps.js"></script>
+
+
+  <script src="project.js"></script>
 </body>
 
 
