@@ -33,22 +33,22 @@ include 'connect.php';
            rules: {
              eventName: {
                minlength: 2,
-               maxlength: 5
+               maxlength: 20
              }
            },
            messages: {
              eventName: {
-               required: "Hamdija de,der majke ti unesi prezime",
-               minlength: "Unesi der koje slovo",
-               maxlength: "Precero si hamdija"
+               required: "please enter event name",
+               minlength: "to low",
+               maxlength: "to much"
              }
            },
            submitHandler: function(form) {
-             if (confirm('Jesi fakat fakat fakat siguran da hoces da submitas????')){
+             if (confirm('are you shure ?')){
 
 
              }else{
-               alert('Dobro ne moras odmah psovati');
+               alert('as you wish');
              }
            }
          });

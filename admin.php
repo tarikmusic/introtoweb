@@ -7,9 +7,10 @@
   <!DOCTYPE html>
   <html>
   <head>
-      <title>Trener</title>
+      <title>Admin</title>
       <link rel="stylesheet" type="text/css" href="my.css">
       <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
       <link rel="stylesheet" type="text/css" href="bootstrap.css">
 
   </head>
@@ -52,42 +53,49 @@
 
 
 <form  class="Tform" id="adminForm" method="post"   >
-  <input style="border: 3px solid red" class="Tin" id="fn" name="fn" placeholder="fn"/> <br></br>
+  <input style="border: 3px solid red" class="Tin" id="fn" name="fn" placeholder="fight number" required/> <br></br>
   <input style="border: 3px solid red" class="Tin" id="opp" name="opp" placeholder="First opponent" /> <div>  vs </div>
   <input style="border: 3px solid red" class="Tin" id="opp2" name="opp2" placeholder="Second opponent" /> <br></br>
-  <input style="border: 3px solid red"  class="Tin" id="submit" class="btn btn-success" type="submit" value="submit" name="submit"/> <br>
-  <button  class="Tin" class="btn btn-success"><a href="events.php" >Add event</a></button>
+  <input style="border: 3px solid red" class="Tin" id="submit" class="btn btn-success" type="submit" value="submit" name="submit"/> <br>
+  <button style="height: 60px"  class="Tin" class="btn btn-success"><a href="events.php" >Add event</a></button>
 </form>
-
 
 <script>
 $("#adminForm").validate({
      rules: {
        opp: {
          minlength: 2,
-         maxlength: 5
+         maxlength: 20
+       },
+       opp2: {
+         minlength: 2,
+         maxlength: 20
        }
      },
      messages: {
        opp: {
-         required: "Hamdija de,der majke ti unesi prezime",
-         minlength: "Unesi der koje slovo",
-         maxlength: "Precero si hamdija"
+         required: "please enter first opponent",
+         minlength: "to low",
+         maxlength: "to much"
+       },
+       opp2: {
+         required: "please enter first opponent",
+         minlength: "to low",
+         maxlength: "to much"
        }
      },
      submitHandler: function(form) {
-       if (confirm('Jesi fakat fakat fakat siguran da hoces da submitas????')){
+       if (confirm('are you shure ? ')){
 
 
        }else{
-         alert('Dobro ne moras odmah psovati');
+         alert('ok');
        }
      }
    });
 
-
-
 </script>
+
 </div>
 <script src="project.js"></script>
 </body>

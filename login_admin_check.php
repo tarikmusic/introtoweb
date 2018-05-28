@@ -13,7 +13,7 @@ $pass = $_POST['pass']
  <!DOCTYPE html>
 <html>
 <head>
-    <title>Ajax</title>
+    <title>Check</title>
     <link rel="stylesheet" type="text/css" href="my.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="bootstrap.css">
@@ -60,7 +60,7 @@ $pass = $_POST['pass']
   if($name == $user  && $pass == $user2){
     header('Location:   admin.php');
   }else{
-    echo "worng !";
+    echo '<p class="ppp">wrong , try again</p>';
   }
 
   ?>

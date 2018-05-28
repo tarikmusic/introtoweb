@@ -38,6 +38,8 @@ include 'connect.php';
 ?>
 <?php
 
+        $e = "no events soon";
+
         foreach ($fighters as $d) {
           $d = $d['eventDate'];
          break;
@@ -48,6 +50,8 @@ include 'connect.php';
         }
 
 
+
+
 ?>
 
   <main>
@@ -56,7 +60,7 @@ include 'connect.php';
       <img src="logo_gloves.png" alt="logo" width="120" class="tm-logo">
         <table class="countDownContainer ">
           <tr>
-            <td colspan="4" class="info" style="color: red"><b><i>"<?php echo $e ?>"</i></b></td>
+            <td colspan="4" class="info" style="color: red"><b><i><?php echo $e ?></i></b></td>
           </tr>
           <tr class="info">
             <td class="bold" id="days">00</td>
@@ -122,6 +126,7 @@ include 'connect.php';
             <li><a href="#" data-target="trener" class="nav-link fight">Trener</a></li>
             <li><a href="#" data-target="admin" class="nav-link fight">Admin </a></li>
             <li><a href="#" data-target="home" class="nav-link fight">Home</a></li>
+            <li><a href="#" data-target="rank" class="nav-link fight">Rank lista</a></li>
         </ul>
       </nav>
   </div>
@@ -133,7 +138,7 @@ include 'connect.php';
 
   <div class="page active" id="home">
     <p></p>
-    <p></p>
+    <p class="pp">upcoming events</p>
     <p></p>
 
     <div class="event">
@@ -205,22 +210,22 @@ $("#fighterForm").validate({
      rules: {
        lname: {
          minlength: 2,
-         maxlength: 5
+         maxlength: 20
        }
      },
      messages: {
        lname: {
-         required: "Hamdija de,der majke ti unesi prezime",
-         minlength: "Unesi der koje slovo",
-         maxlength: "Precero si hamdija"
+         required: "please enter surname",
+         minlength: "to low",
+         maxlength: "to much"
        }
      },
      submitHandler: function(form) {
-       if (confirm('Jesi fakat fakat fakat siguran da hoces da submitas????')){
+       if (confirm('are you shure ?')){
 
 
        }else{
-         alert('Dobro ne moras odmah psovati');
+         alert('ok you dont have to ');
        }
      }
    });
@@ -237,10 +242,9 @@ $("#fighterForm").validate({
 
 
     <p></p>
-    <p></p>
+    <p class="centar" ><b><?php echo $e ?></b> <i>  fight schedules</i></p>
     <p></p>
     <div class="content">
-
         <?php
           try{
 
@@ -260,28 +264,19 @@ $("#fighterForm").validate({
             exit;
 
           }
-
     ?>
 
     <?php
             echo ' <table class="table table-striped " >  <tr><th>Fight Number</th><th style= "color: red">Red corner</th><th style="color: blue">Blue corner</th></tr>';
 
         foreach($names as $name){
-
-
             echo '<tr><td>' . $name['fight_number'] . '</td><td>' . $name['first'] . '</td><td>' . $name['second'] . '</td></tr>';
-
-
         }
 
         echo '</table>';
 
      ?>
-
-
-
     </div>
-
 
   </div>
 
@@ -298,6 +293,73 @@ $("#fighterForm").validate({
     </form>
 
 <!--<button class="singup" ><a href="#" data-target="nesto" class="nav-link">sing up</a></button> -->
+
+  </div>
+
+  <div class="page" id="rank">
+    <p></p>
+    <p class="centar" > <b> Rank Lista </b> </p>
+    <p></p>
+
+        <?php
+          try{
+
+            global $db;
+            $result = $db->prepare("SELECT * FROM fighter ORDER BY id ASC");
+            $result->execute();
+            $fighters = $result->fetchAll(PDO::FETCH_ASSOC);
+            /*   A cursor is used to pecess individual rows return
+            by database system for a query.
+            cursor holds the rows returned by squl statement.
+            cursor is defined as work area where sql statement is executed
+            */
+            $result->closeCursor();
+
+          }catch(Exeption $e){
+            echo $e->getMessage() . " error has occured";
+            exit;
+
+          }
+    ?>
+    <?php
+              $wins = array();
+              $losess = array();
+              $res = array();
+              $counter = 0;
+              foreach ($fighters as $member) {
+                $fighterName[$counter] = $member['first_name'] . " " . $member['last_name'];
+                $wins[$counter] =  $member['wins'];
+                $losess[$counter] =  $member['losess'];
+                $res[$counter] = $wins[$counter] - $losess[$counter];
+                $counter++;
+              }
+
+              for($i=0; $i <= $counter; $i++){
+
+                for($j=1; $j < $counter - $i;$j++){
+                  if($res[$j-1]>$res[$j]){
+                    $temp = $res[$j-1];
+                    $res[$j-1] = $res[$j];
+                    $res[$j] = $temp;
+
+                    $tempName = $fighterName[$j-1];
+                    $fighterName[$j-1] = $fighterName[$j];
+                    $fighterName[$j] = $tempName;
+
+                  }
+                }
+              }
+
+                echo ' <table class="table table-striped " >  <tr><th>Fighter Name</th><th>Ratio</th></tr>';
+
+              for($p=0; $p < $counter; $p++){
+
+                  echo '<tr><td>' .  $fighterName[$p] . '</td><td>' . $res[$p]. '</td></tr>';
+              }
+
+            echo  '</table>';
+    ?>
+
 
   </div>
 

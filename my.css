@@ -57,8 +57,9 @@
 }
 
 .fight:hover{
-  border: 2px solid blue;
+/*  border: 2px solid blue; */
   text-transform: uppercase;
+  background: #eff5ff;
 }
 
 
@@ -70,7 +71,8 @@
 }
 
 .tm-nav ul li a:hover{
-  color: #3e99ff;
+  color: #163972;
+  font-weight: bold;
 }
 
 p{
@@ -139,4 +141,30 @@ p{
 .singup{
   padding: 5px;
   margin: 30px;
+}
+
+.centar{
+  color: black;
+  margin-left: 40%;
+  font-size: 25px;
+}
+
+.bigger{
+  height: 20%;
+}
+
+.pp{
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #022968;
+  margin-left: 40%;
+  font-size: 25px;
+}
+
+.ppp{
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #ff2111;
+  margin-left: 40%;
+  font-size: 25px;
 }
